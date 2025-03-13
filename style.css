@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #e9f5dc;
+    padding: 20px;
+}
+
+h1 {
+    color: #4a752c;
+}
+
+button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #8bc34a;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #689f38;
+}
+
+.farm-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.crop img {
+    width: 60px;
+    height: 60px;
+    animation: grow 3s infinite alternate ease-in-out;
+}
+
+@keyframes grow {
+    from { transform: scale(0.8); opacity: 0.7; }
+    to { transform: scale(1); opacity: 1; }
+}
