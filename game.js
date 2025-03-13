@@ -41,28 +41,51 @@ function plantCrop(type) {
 }
 
 function openShop() {
-    const shopItems = [
-        { name: "Water Refill", cost: 5, action: () => gameState.waterLevel += 3 },
-        { name: "Fertilizer", cost: 10, action: () => gameState.soilQuality += 3 },
-        { name: "New Seeds", cost: 15, action: () => gameState.money += 5 }
-    ];
-    
-    let shopMenu = "Welcome to the Shop!\n";
-    shopItems.forEach((item, index) => {
-        shopMenu += `${index + 1}. ${item.name} - $${item.cost}\n`;
-    });
-    
-    const choice = prompt(shopMenu + "Enter the number of the item you want to buy:");
-    const selectedItem = shopItems[parseInt(choice) - 1];
-    
-    if (selectedItem && gameState.money >= selectedItem.cost) {
-        gameState.money -= selectedItem.cost;
-        selectedItem.action();
+    document.getElementById("shopModal").style.display = "block";
+}
+
+document.querySelector(".close").addEventListener("click", () => {
+    document.getElementById("shopModal").style.display = "none";
+});
+
+document.getElementById("buyWater").addEventListener("click", () => {
+    if (gameState.money >= 5) {
+        gameState.money -= 5;
+        gameState.waterLevel += 3;
         renderGame();
     } else {
-        alert("Invalid choice or not enough money!");
+        alert("Not enough money!");
     }
-}
+});
+
+document.getElementById("buyFertilizer").addEventListener("click", () => {
+    if (gameState.money >= 10) {
+        gameState.money -= 10;
+        gameState.soilQuality += 3;
+        renderGame();
+    } else {
+        alert("Not enough money!");
+    }
+});
+
+document.getElementById("buySeeds").addEventListener("click", () => {
+    if (gameState.money >= 15) {
+        gameState.money -= 15;
+        gameState.money += 5; // Bonus money
+        renderGame();
+    } else {
+        alert("Not enough money!");
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("plantWheat").addEventListener("click", () => plantCrop("wheat"));
+    document.getElementById("plantCarrot").addEventListener("click", () => plantCrop("carrot"));
+    document.getElementById("plantCorn").addEventListener("click", () => plantCrop("corn"));
+    document.getElementById("openShop").addEventListener("click", openShop);
+    setInterval(updateSeason, 30000); // Change season every 30 seconds
+    renderGame();
+});
 
 function renderGame() {
     document.getElementById("money").innerText = `💰 Money: $${gameState.money}`;
@@ -76,14 +99,3 @@ function renderGame() {
         </div>
     `).join("");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("plantWheat").addEventListener("click", () => plantCrop("wheat"));
-    document.getElementById("plantCarrot").addEventListener("click", () => plantCrop("carrot"));
-    document.getElementById("plantCorn").addEventListener("click", () => plantCrop("corn"));
-    document.getElementById("waterPlants").addEventListener("click", () => gameState.waterLevel += 3);
-    document.getElementById("fertilizeSoil").addEventListener("click", () => gameState.soilQuality += 3);
-    document.getElementById("openShop").addEventListener("click", openShop);
-    setInterval(updateSeason, 30000); // Change season every 30 seconds
-    renderGame();
-});
