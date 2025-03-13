@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farming Game</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        button { margin: 5px; padding: 10px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Farming Game</h1>
-    <p id="money">Money: $100</p>
-    <button id="plantWheat">Plant Wheat ($10)</button>
-    <button id="plantCarrot">Plant Carrot ($15)</button>
-    <button id="plantCorn">Plant Corn ($20)</button>
-    <h2>Your Crops</h2>
-    <div id="crops"></div>
+    <h1>🌾 Farming Game 🌽</h1>
+    
+    <p id="money">💰 Money: $100</p>
+
+    <div class="buttons">
+        <button id="plantWheat">🌾 Plant Wheat ($10)</button>
+        <button id="plantCarrot">🥕 Plant Carrot ($15)</button>
+        <button id="plantCorn">🌽 Plant Corn ($20)</button>
+    </div>
+
+    <h2>Your Farm</h2>
+    <div id="crops" class="farm-container"></div>
+
     <script src="game.js"></script>
 </body>
 </html>
