@@ -4,9 +4,9 @@ const gameState = {
 };
 
 const cropTypes = {
-    wheat: { cost: 10, growTime: 5000, sellPrice: 20 },
-    carrot: { cost: 15, growTime: 8000, sellPrice: 30 },
-    corn: { cost: 20, growTime: 10000, sellPrice: 40 }
+    wheat: { cost: 10, growTime: 5000, sellPrice: 20, image: "wheat.png" },
+    carrot: { cost: 15, growTime: 8000, sellPrice: 30, image: "carrot.png" },
+    corn: { cost: 20, growTime: 10000, sellPrice: 40, image: "corn.png" }
 };
 
 function plantCrop(type) {
@@ -30,7 +30,9 @@ function harvestCrop(crop) {
 function renderGame() {
     document.getElementById("money").innerText = `Money: $${gameState.money}`;
     document.getElementById("crops").innerHTML = gameState.crops.map(crop => `
-        <div>${crop.type} (Growing...)</div>
+        <div class="crop">
+            <img src="${cropTypes[crop.type].image}" alt="${crop.type}" class="growing">
+        </div>
     `).join("");
 }
 
