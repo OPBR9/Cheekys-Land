@@ -1,0 +1,10 @@
+.growing {
+    width: 50px;
+    height: 50px;
+    animation: grow 5s infinite alternate;
+}
+
+@keyframes grow {
+    from { transform: scale(0.5); opacity: 0.5; }
+    to { transform: scale(1); opacity: 1; }
+}
